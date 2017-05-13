@@ -1,12 +1,20 @@
+import os
 print ("Enjoy this fun quiz!")
 a = input("What is your name?\n")
-b = input("what is your favorite colour?\n")
-c = input("What is your favorite sport? \n")
-d = input("What is your subject? \n")
+b = input("what is your favourite colour?\n")
+c = input("What is your favourite sport? \n")
+d = input("What is your favourite subject? \n")
 print ("Thank you,", a)
 x = "hi"
 
-f = open("answers.txt", "w")
+for root, dirs, files in os.walk(os.getcwd()): #for every file in the current working directory
+    for file in files: #for each file
+        if file.endswith(".txt"): #if it ends with txt
+             new = file.split("."); #split it by the dots e.g. answers.2.txt goes to a list [answers, 2, txt]
+             fileno = int(new[1]) + 1 #get the file no and add one on to it
+             fileno = str(fileno) #print the fileno as a string
+             
+f = open("answers."+fileno+".txt", "w")
 f.write("Persons name: \n")
 f.write(a)
 f.write("\n")
